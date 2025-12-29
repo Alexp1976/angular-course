@@ -1,7 +1,8 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { Task } from "./task/task";
 import { NewUserTask, UserTask } from './task/task.model';
 import { NewTask } from "./new-task/new-task";
+import { TasksService } from './task-service';
 
 @Component({
   selector: 'app-tasks',
@@ -13,64 +14,27 @@ export class Tasks {
 
   userId = input.required<string>();
   userName = input.required<string>();
-
-  userTasks = computed(() =>
-    this.dummyTasks().filter((task) => task.userId === this.userId())
-  );
-
+  
   addTask: boolean = false;
 
-  dummyTasks = signal<UserTask[]>([
-    {
-      id: 't1',
-      userId: 'u1',
-      title: 'Master Angular',
-      summary:
-        'Learn all the basic and advanced features of Angular & how to apply them.',
-      dueDate: '2025-12-31',
-    },
-    {
-      id: 't2',
-      userId: 'u3',
-      title: 'Build first prototype',
-      summary: 'Build a first prototype of the online shop website',
-      dueDate: '2024-05-31',
-    },
-    {
-      id: 't3',
-      userId: 'u3',
-      title: 'Prepare issue template',
-      summary:
-        'Prepare and describe an issue template which will help with project management',
-      dueDate: '2024-06-15',
-    },
-  ]);
-
-  completeTask(taskId: string) {
-    this.dummyTasks.set(this.dummyTasks().filter((task) => task.id !== taskId));
-  }
-
-  onNewTaskClicked() {
+  private taskService = inject(TasksService);
+  
+  onNewTaskClicked() {    
     this.addTask = true;
   }
 
-  onNewTaskSubmited(task: NewUserTask) {
-    const newId = 't' + (this.dummyTasks().length + 1);
-    this.dummyTasks.update((tasks) => [
-      ...tasks,
-      {
-        id: newId,
-        userId: this.userId(),
-        title: task.title,
-        summary: task.summary,
-        dueDate: task.dueDate,
-      }
-    ]);
+  onNewTaskClosed() {
     this.addTask = false;
   }
 
-  onNewTaskCanceled() {
+  onNewTaskSubmited(task: NewUserTask) {
+    this.taskService.addTask(task, this.userId());
     this.addTask = false;
   }
+
+  getUserTasks() {
+    return this.taskService.getUserTasks(this.userId());
+  } 
+
 
 }
