@@ -7,7 +7,7 @@ import { NewTask } from "./new-task/new-task";
 })
 export class TasksService {
 
-    private dummyTasks = signal<UserTask[]>([
+    private tasks = signal<UserTask[]>([
         {
           id: 't1',
           userId: 'u1',
@@ -36,17 +36,21 @@ export class TasksService {
     constructor() {
       const task = localStorage.getItem('tasks');
       if (task) {
-        this.dummyTasks.set(JSON.parse(task));
+        this.tasks.set(JSON.parse(task));
       }
     }
 
+    getUsers() {
+        return this.tasks();
+    }
+
     getUserTasks(userId: string) {
-        return this.dummyTasks().filter((task) => task.userId === userId);
+        return this.tasks().filter((task) => task.userId === userId);
     }
 
     addTask(taskData: NewUserTask, userId: string) {
-        const newId = 't' + (this.dummyTasks().length + 1);
-        this.dummyTasks.update((tasks) => [
+        const newId = 't' + (this.tasks().length + 1);
+        this.tasks.update((tasks) => [
             ...tasks,
             {
                 id: newId,
@@ -60,11 +64,11 @@ export class TasksService {
     }
 
     removeTask(taskId: string) {
-        this.dummyTasks.set(this.dummyTasks().filter((task) => task.id !== taskId));
+        this.tasks.set(this.tasks().filter((task) => task.id !== taskId));
         this.saveTaksToStorage();
     }
 
     private saveTaksToStorage() {
-        localStorage.setItem('tasks', JSON.stringify(this.dummyTasks()));
+        localStorage.setItem('tasks', JSON.stringify(this.tasks()));
     }
 }

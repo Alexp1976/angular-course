@@ -1,0 +1,14 @@
+<app-traffic-header></app-traffic-header>
+<main>
+  <div id="dashboard">
+    <app-dashboard-item [image]="serverStatusImage" [title]="serverStatusTitle">
+      <app-server-status></app-server-status>
+    </app-dashboard-item>
+    <app-dashboard-item [image]="trafficStatusImage" [title]="trafficStatusTitle">
+      <app-traffic-info></app-traffic-info>
+    </app-dashboard-item>
+    <app-dashboard-item [image]="supportTicketsImage" [title]="supportTicketsTitle">
+      <app-support-tickets></app-support-tickets>
+    </app-dashboard-item>
+  </div>
+</main>

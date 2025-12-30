@@ -15,9 +15,12 @@ export class NewTask {
   userId = input.required<string>();
   title = signal('');
   summary = signal('');
-  dueDate = signal('');  
-
+  dueDate = signal('2025-12-31');  
+ 
   private taskService = inject(TasksService);
+
+  minDate = '2025-12-01';
+  maxDate = '2025-12-31';
 
   onSaveNewTask() {
     

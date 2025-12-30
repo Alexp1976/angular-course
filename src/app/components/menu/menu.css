@@ -1,0 +1,31 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #0d3053;
+    padding: 10px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0rem 5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+li {
+    min-width: 5rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a:hover, a:active, .active {
+    cursor: pointer;
+    background-color: rgb(136, 138, 147);
+}

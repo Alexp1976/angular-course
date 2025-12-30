@@ -3,10 +3,13 @@ import { Task } from "./task/task";
 import { NewUserTask, UserTask } from './task/task.model';
 import { NewTask } from "./new-task/new-task";
 import { TasksService } from './task-service';
+import { Header } from "../header/header";
+import { User } from "../user/user";
+import { UserTasks } from "./user-tasks/user-tasks";
 
 @Component({
   selector: 'app-tasks',
-  imports: [Task, NewTask],
+  imports: [Header, UserTasks],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css',
 })
@@ -14,23 +17,8 @@ export class Tasks {
 
   userId = input.required<string>();
   userName = input.required<string>();
-  
-  addTask: boolean = false;
 
   private taskService = inject(TasksService);
-  
-  onNewTaskClicked() {    
-    this.addTask = true;
-  }
-
-  onNewTaskClosed() {
-    this.addTask = false;
-  }
-
-  onNewTaskSubmited(task: NewUserTask) {
-    this.taskService.addTask(task, this.userId());
-    this.addTask = false;
-  }
 
   getUserTasks() {
     return this.taskService.getUserTasks(this.userId());

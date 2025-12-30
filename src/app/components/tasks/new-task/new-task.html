@@ -14,7 +14,7 @@
 
     <p>
       <label for="due-date">Due Date</label>
-      <input type="date" id="due-date" name="due-date" [(ngModel)]="dueDate" />
+      <input type="date" id="due-date" name="due-date" [(ngModel)]="dueDate" [min]="minDate" [max]="maxDate" />
     </p>
 
     <p class="actions">
