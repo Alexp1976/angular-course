@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
-import { Tasks } from './components/tasks/tasks';
+import { TaskManager } from './components/task-manager/task-manager'; 
 import { TrafficDashboard } from './components/traffic/traffic-dashboard'; 
 
 export const routes: Routes = [
     { path: '', component: Home },
-    { path: 'tasks', component: Tasks },
+    { path: 'tasks', component: TaskManager },
     { path: 'traffic', component: TrafficDashboard }
 ];

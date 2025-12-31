@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { User } from "../../user/user";
 import { Tasks } from "../tasks";
-import { DUMMY_USERS } from '../../user/dummy-users';
+import { DUMMY_USERS } from '../../../shared/mocks/dummy-users';
 import { TasksService } from '../task-service';
 import { UserService } from '../../user/user-service';
 import { UserType } from '../../user/user.model';

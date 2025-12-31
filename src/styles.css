@@ -13,10 +13,7 @@ body {
   background-color: #c0bdc3;
 }
 
-main {
-  width: 80%;
-  margin: 3rem 10%;
-}
+
 
 #dashboard {
   display: flex;

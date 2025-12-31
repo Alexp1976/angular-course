@@ -1,0 +1,13 @@
+<main>
+    <ul id="users">
+        @for (user of users(); track user.id) {
+            <li>
+                <app-task-manager-user
+                    [user]="user"
+                    [selectedId]="selectedUser() ? selectedUser()!.id : undefined"
+                    (selectedUser)="onUserSelected(user)">
+                </app-task-manager-user>
+            </li>
+        }
+    </ul>    
+</main>

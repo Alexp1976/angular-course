@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { UserType } from './user.model';
-import { DUMMY_USERS } from './dummy-users';
+import { DUMMY_USERS } from '../../shared/mocks/dummy-users';
 
 @Injectable({
   providedIn: 'root',
