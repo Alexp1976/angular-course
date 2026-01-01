@@ -1,5 +1,5 @@
 <app-card>
-    <button [class.active]="selectedId() === user().id" (click)="onSelectUser(user())">
+    <button [class.active]="selected()" (click)="onSelectUser(user())">
         <img [src]="user().avatar" [alt]="user().name" />
         <span>{{user().name}}</span>
     </button>

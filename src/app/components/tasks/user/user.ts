@@ -1,6 +1,6 @@
 import { Component, computed, EventEmitter, inject, input, Input, output, Output, signal} from '@angular/core';
 import { UserType } from './user.model';
-import { Card } from "../../shared/card/card";
+import { Card } from '../../../shared/card/card'; 
 import { UserService } from './user-service';
 
 @Component({
@@ -11,13 +11,14 @@ import { UserService } from './user-service';
 })
 export class User {
 
-  selectedId = input<string>();
+  // input
+  selected = input.required<boolean>();
   user = input.required<UserType>();
-  imagePath = computed(() => 'assets/users/' + this.user().avatar);
 
-  private userService = inject(UserService);
+  // output
+  select = output<string>();
 
   onSelectUser(user: UserType) { 
-    this.userService.setSelectedUser(user);
+    this.select.emit(this.user().id);
   }
 }
