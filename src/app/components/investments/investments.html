@@ -1,0 +1,7 @@
+<app-invest-header></app-invest-header>
+<app-invest-user-input (calculated)="onCalculated($event)"></app-invest-user-input>
+
+
+@if(isCalculated) {
+    <app-invest-result></app-invest-result>
+}
